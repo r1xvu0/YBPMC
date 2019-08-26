@@ -10,6 +10,7 @@ namespace CSharp_BTC_Profit_Calculator
         {
             //Define all possible variables we are going to use;
             int choice;
+            double version = 0.2;
             bool programContinue = true;
             Double btcValue;
             Double amountTraded;
@@ -25,20 +26,21 @@ namespace CSharp_BTC_Profit_Calculator
             while (programContinue == true) //While loop for MAIN SEQUENCE;
             {
                 Console.WriteLine("-====================================================-");
-                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.1==-");
+                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.2==-");
                 Console.WriteLine("-====================================================-");
                 Console.WriteLine("Choose one:");
                 Console.WriteLine("1. BTC Profit Calculator");
                 Console.WriteLine("2. BTC Price for Target");
                 Console.WriteLine("3. What is my BTC worth");
                 Console.WriteLine("4. BTC per one Person");
+                Console.WriteLine("5. How much coins I need for profit");
                 Console.WriteLine("0. Exit");
                 choice = int.Parse(Console.ReadLine()); //asking for choice input;
                 switch (choice)
                 {
                     case 0: //Exit the program and display bb message;
                         programContinue = false;
-                        Console.WriteLine("Thanks for using Yannick's BTC Profit Calculator v0.1");
+                        Console.WriteLine("Thanks for using Yannick's BTC Profit Calculator v" + version);
                         Console.ReadLine();
                         break;
                     case 1: //BTC PROFIT CALCULATOR;
@@ -180,7 +182,40 @@ namespace CSharp_BTC_Profit_Calculator
                         double btcPerPerson = btcTotalVolume / personOnWorld; //Quick and easy math;
                         Console.WriteLine("Volume per person: " + btcPerPerson + " BTC");
                         btcPerPerson = (btcTotalVolume - lostBtc) / personOnWorld; //Counting in the losses at BTC end;
-                        Console.WriteLine("Volume per person with Lost BTC: " + btcPerPerson);
+                        Console.WriteLine("Volume per person with $$Lost$$ BTC: " + btcPerPerson);
+
+                        Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
+                        choice = int.Parse(Console.ReadLine());
+                        switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
+                        {
+                            case 0: //EXIT;
+                                programContinue = false;
+                                Console.WriteLine("Thanks for using my BTC Profit Calculator. Good Bye ;]");
+                                break;
+                            case 1: //CONTINUE;
+                                programContinue = true;
+                                break;
+                            default:
+                                Console.WriteLine("Wrong Choice! Exitting Now");
+                                programContinue = false;
+                                Console.ReadLine();
+                                break;
+                        }
+                        break;
+
+                    case 5: //CHECK HOW MANY COINS ARE NEEDED FOR TARGETED PROFIT
+                        double coinsNeeded;
+                        Console.WriteLine("Enter expected profit: ");
+                        totalValue = Double.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Enter BUY price: ");
+                        btcValue = Double.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Enter expected SELL price: ");
+                        btcSellValue = Double.Parse(Console.ReadLine());
+
+                        coinsNeeded = totalValue / (btcSellValue - btcValue);
+                        Console.WriteLine("You would need to have " + coinsNeeded + " BTC to reach your expected profit!");
 
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
