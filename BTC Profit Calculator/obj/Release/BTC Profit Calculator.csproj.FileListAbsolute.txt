@@ -1,0 +1,7 @@
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\bin\Release\BTC Profit Calculator.exe.config
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\bin\Release\BTC Profit Calculator.exe
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\bin\Release\BTC Profit Calculator.pdb
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.exe
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.pdb
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.csprojAssemblyReference.cache
