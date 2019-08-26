@@ -202,7 +202,7 @@ namespace CSharp_BTC_Profit_Calculator
                         }
                         break;
 
-                    case 5:
+                    case 5: //CHECK HOW MANY COINS ARE NEEDED FOR TARGETED PROFIT
                         double coinsNeeded;
                         Console.WriteLine("Enter expected profit: ");
                         totalValue = Double.Parse(Console.ReadLine());
