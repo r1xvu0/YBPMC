@@ -5,3 +5,6 @@ C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Rele
 C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.exe
 C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.pdb
 C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\bin\Release\Newtonsoft.Json.dll
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\bin\Release\Newtonsoft.Json.xml
+C:\Users\admin\source\repos\BTC Profit Calculator\BTC Profit Calculator\obj\Release\BTC Profit Calculator.csproj.CopyComplete

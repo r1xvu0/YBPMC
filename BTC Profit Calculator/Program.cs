@@ -1,6 +1,11 @@
 ﻿/* Yannick's BTC Profit Calculator v0.08;
  */
 using System;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+
+
 
 namespace CSharp_BTC_Profit_Calculator
 {
@@ -26,7 +31,7 @@ namespace CSharp_BTC_Profit_Calculator
             while (programContinue == true) //While loop for MAIN SEQUENCE;
             {
                 Console.WriteLine("-====================================================-");
-                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.2==-");
+                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.2===-");
                 Console.WriteLine("-====================================================-");
                 Console.WriteLine("Choose one:");
                 Console.WriteLine("1. BTC Profit Calculator");
@@ -34,6 +39,7 @@ namespace CSharp_BTC_Profit_Calculator
                 Console.WriteLine("3. What is my BTC worth");
                 Console.WriteLine("4. BTC per one Person");
                 Console.WriteLine("5. How much coins I need for profit");
+                Console.WriteLine("6. BTC Live Price /CoinDesk/");
                 Console.WriteLine("0. Exit");
                 choice = int.Parse(Console.ReadLine()); //asking for choice input;
                 switch (choice)
@@ -235,6 +241,7 @@ namespace CSharp_BTC_Profit_Calculator
                                 break;
                         }
                         break;
+                    
 
                     default: //DEFAULT INPUT FOR ANYTHING THAT IS NOT CHOICE VAR;
                         Console.WriteLine("");
