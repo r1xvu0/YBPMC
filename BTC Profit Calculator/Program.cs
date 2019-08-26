@@ -3,6 +3,7 @@
 using System;
 using System.Net;
 using Newtonsoft;
+using System.IO;
 
 namespace CSharp_BTC_Profit_Calculator
 {
@@ -10,6 +11,8 @@ namespace CSharp_BTC_Profit_Calculator
     {
         static void Main(string[] args)
         {
+
+            Console.ForegroundColor = ConsoleColor.Green;
             //Define all possible variables we are going to use;
             int choice;
             Double version = 0.3;
@@ -96,7 +99,7 @@ namespace CSharp_BTC_Profit_Calculator
                         Console.WriteLine("Your percentage gain is: " + percGain + "%");
                         Console.WriteLine("");
                         
-                        Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
+                        Console.WriteLine("Do you wish to Continue[1] or Exit[0] or Save this Data[2]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
                         {
@@ -106,6 +109,12 @@ namespace CSharp_BTC_Profit_Calculator
                                 break;
                             case 1: //CONTINUE;
                                 programContinue = true;
+                                break;
+                            case 2: //SAVE TO FILE;
+                                using (StreamWriter writeText = new StreamWriter("test.txt", true))
+                                {
+                                    writeText.WriteLine(percGain + " " + DateTime.Now.ToString());
+                                }
                                 break;
                             default:
                                 Console.WriteLine("Wrong Choice! Exitting Now");
@@ -130,7 +139,8 @@ namespace CSharp_BTC_Profit_Calculator
                         valueNeeded = expectedResult / amountOwned;
                         Console.WriteLine("Your coins need to get to: ");
                         Console.WriteLine(valueNeeded + "$$$ to reach your goal of " + expectedResult + "$");
-                        
+                        Console.WriteLine("");
+
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
@@ -148,12 +158,12 @@ namespace CSharp_BTC_Profit_Calculator
                                 Console.ReadLine();
                                 break;
                         }
-                        break;
+                        break; //Break Case 2;
 
                     case 3: //WHAT IS MY BTC WORTH;
 
                         Console.WriteLine("");
-                        Console.WriteLine("BTC Value ATM: " + btcLivePrice + "$");
+                        Console.WriteLine("BTC Value NOW: " + btcLivePrice + "$");
                         btcValue = btcLivePrice;
 
                         Console.WriteLine("Enter amount of BTC Hodled: ");
@@ -161,6 +171,8 @@ namespace CSharp_BTC_Profit_Calculator
 
                         totalValue = amountTraded * btcValue;
                         Console.WriteLine("Your " + amountTraded + " BTC is worth $" + totalValue + "$ at Value of " + btcValue + "$ per coin");
+                        Console.WriteLine("");
+
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
@@ -178,7 +190,7 @@ namespace CSharp_BTC_Profit_Calculator
                                 Console.ReadLine();
                                 break;
                         }
-                        break;
+                        break; //Breaking Case 3;
 
 
                     case 4: //BTC PER PERSON;
@@ -193,6 +205,7 @@ namespace CSharp_BTC_Profit_Calculator
                         Console.WriteLine("Volume per person: " + btcPerPerson + " BTC");
                         btcPerPerson = (btcTotalVolume - lostBtc) / personOnWorld; //Counting in the losses at BTC end;
                         Console.WriteLine("Volume per person with $$Lost$$ BTC: " + btcPerPerson);
+                        Console.WriteLine("");
 
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
@@ -211,7 +224,7 @@ namespace CSharp_BTC_Profit_Calculator
                                 Console.ReadLine();
                                 break;
                         }
-                        break;
+                        break; //Breaking Case 4;
 
                     case 5: //CHECK HOW MANY COINS ARE NEEDED FOR TARGETED PROFIT
                         double coinsNeeded;
@@ -227,6 +240,7 @@ namespace CSharp_BTC_Profit_Calculator
 
                         coinsNeeded = totalValue / (btcSellValue - btcValue);
                         Console.WriteLine("You would need to have " + coinsNeeded + " BTC to reach your expected profit!");
+                        Console.WriteLine("");
 
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
@@ -245,7 +259,7 @@ namespace CSharp_BTC_Profit_Calculator
                                 Console.ReadLine();
                                 break;
                         }
-                        break;
+                        break; //Breaking Case 5;
 
                     default: //DEFAULT INPUT FOR ANYTHING THAT IS NOT CHOICE VAR;
                         Console.WriteLine("");
