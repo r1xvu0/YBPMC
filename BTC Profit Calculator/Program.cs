@@ -26,14 +26,14 @@ namespace CSharp_BTC_Profit_Calculator
             Double increase;
             Double negaFee;
             string json;
-            using (var web = new System.Net.WebClient())
+            using (var web = new WebClient()) //Using WebClient for a second;
             {
-                var url = @"https://api.coindesk.com/v1/bpi/currentprice/btc.json";
+                var url = @"https://api.coindesk.com/v1/bpi/currentprice/btc.json"; //URL into variable for quick use;
                 json = web.DownloadString(url);
             }
 
-            dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-            var btcLivePrice = Convert.ToDecimal(obj.bpi.USD.rate.Value);
+            dynamic livePr = Newtonsoft.Json.JsonConvert.DeserializeObject(json); //Making the JSON file readable;
+            Double btcLivePrice = Convert.ToDouble(livePr.bpi.USD.rate.Value); //And converting it to Double var;
 
             while (programContinue == true) //While loop for MAIN SEQUENCE;
             {
@@ -153,8 +153,8 @@ namespace CSharp_BTC_Profit_Calculator
                     case 3: //WHAT IS MY BTC WORTH;
 
                         Console.WriteLine("");
-                        Console.WriteLine("BTC Value ATM: ");
-                        btcValue = Double.Parse(Console.ReadLine());
+                        Console.WriteLine("BTC Value ATM: " + btcLivePrice + "$");
+                        btcValue = btcLivePrice;
 
                         Console.WriteLine("Enter amount of BTC Hodled: ");
                         amountTraded = Double.Parse(Console.ReadLine());
@@ -185,6 +185,7 @@ namespace CSharp_BTC_Profit_Calculator
                         double personOnWorld = 7725989100.00; //More vars!!!;
                         double btcTotalVolume = 21000000;
                         double lostBtc = 3790000;
+                        Console.WriteLine("");
                         Console.WriteLine("If you would have to distribute all of the BTC in world to all people.");
                         Console.WriteLine("Total Volume of BTC: " + btcTotalVolume);
                         Console.WriteLine("Total population: " + personOnWorld);
@@ -214,6 +215,7 @@ namespace CSharp_BTC_Profit_Calculator
 
                     case 5: //CHECK HOW MANY COINS ARE NEEDED FOR TARGETED PROFIT
                         double coinsNeeded;
+                        Console.WriteLine("");
                         Console.WriteLine("Enter expected profit: ");
                         totalValue = Double.Parse(Console.ReadLine());
 
