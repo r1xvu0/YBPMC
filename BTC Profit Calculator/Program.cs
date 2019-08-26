@@ -1,6 +1,8 @@
-﻿/* Yannick's BTC Profit Calculator v0.08;
+﻿/* Yannick's BTC Profit Calculator v0.3;
  */
 using System;
+using System.Net;
+using Newtonsoft;
 
 namespace CSharp_BTC_Profit_Calculator
 {
@@ -10,7 +12,7 @@ namespace CSharp_BTC_Profit_Calculator
         {
             //Define all possible variables we are going to use;
             int choice;
-            double version = 0.2;
+            Double version = 0.3;
             bool programContinue = true;
             Double btcValue;
             Double amountTraded;
@@ -23,14 +25,25 @@ namespace CSharp_BTC_Profit_Calculator
             Double percGain;
             Double increase;
             Double negaFee;
+            string json;
+            using (var web = new System.Net.WebClient())
+            {
+                var url = @"https://api.coindesk.com/v1/bpi/currentprice/btc.json";
+                json = web.DownloadString(url);
+            }
+
+            dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+            var btcLivePrice = Convert.ToDecimal(obj.bpi.USD.rate.Value);
+
             while (programContinue == true) //While loop for MAIN SEQUENCE;
             {
                 Console.WriteLine("-====================================================-");
-                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.2==-");
+                Console.WriteLine("-==Welcome to Yannick's BTC Profit Calculator v0.3==-");
+                Console.WriteLine("-========BTC PRICE NOW " + btcLivePrice + "$========-");
                 Console.WriteLine("-====================================================-");
                 Console.WriteLine("Choose one:");
                 Console.WriteLine("1. BTC Profit Calculator");
-                Console.WriteLine("2. BTC Price for Target");
+                Console.WriteLine("2. Price for Coin");
                 Console.WriteLine("3. What is my BTC worth");
                 Console.WriteLine("4. BTC per one Person");
                 Console.WriteLine("5. How much coins I need for profit");
@@ -40,7 +53,7 @@ namespace CSharp_BTC_Profit_Calculator
                 {
                     case 0: //Exit the program and display bb message;
                         programContinue = false;
-                        Console.WriteLine("Thanks for using Yannick's BTC Profit Calculator v" + version);
+                        Console.WriteLine("Thanks for using Yannick's BTC Profit Calculator " + version);
                         Console.ReadLine();
                         break;
                     case 1: //BTC PROFIT CALCULATOR;
@@ -114,14 +127,10 @@ namespace CSharp_BTC_Profit_Calculator
                         Console.WriteLine("How much coins do you own:");
                         amountOwned = Double.Parse(Console.ReadLine());
 
-                        Console.WriteLine("What is the price at the moment:");
-                        btcValue = Double.Parse(Console.ReadLine());
-
                         valueNeeded = expectedResult / amountOwned;
                         Console.WriteLine("Your coins need to get to: ");
-                        Console.WriteLine(valueNeeded + " of $$$ to reach your goal of " + expectedResult + "$");
+                        Console.WriteLine(valueNeeded + "$$$ to reach your goal of " + expectedResult + "$");
                         
-
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
@@ -144,7 +153,7 @@ namespace CSharp_BTC_Profit_Calculator
                     case 3: //WHAT IS MY BTC WORTH;
 
                         Console.WriteLine("");
-                        Console.WriteLine("Enter BTC Value: ");
+                        Console.WriteLine("BTC Value ATM: ");
                         btcValue = Double.Parse(Console.ReadLine());
 
                         Console.WriteLine("Enter amount of BTC Hodled: ");
