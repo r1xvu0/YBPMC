@@ -50,6 +50,7 @@ namespace CSharp_BTC_Profit_Calculator
                 Console.WriteLine("3. What is my BTC worth");
                 Console.WriteLine("4. BTC per one Person");
                 Console.WriteLine("5. How much coins I need for profit");
+                Console.WriteLine("6. Your average BTC Value");
                 Console.WriteLine("0. Exit");
                 choice = int.Parse(Console.ReadLine()); //asking for choice input;
                 switch (choice)
@@ -98,7 +99,7 @@ namespace CSharp_BTC_Profit_Calculator
                         percGain = (increase / btcValue) * 100;
                         Console.WriteLine("Your percentage gain is: " + percGain + "%");
                         Console.WriteLine("");
-                        
+
                         Console.WriteLine("Do you wish to Continue[1] or Exit[0] or Save this Data[2]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
@@ -173,7 +174,7 @@ namespace CSharp_BTC_Profit_Calculator
                         Console.WriteLine("Your " + amountTraded + " BTC is worth $" + totalValue + "$ at Value of " + btcValue + "$ per coin");
                         Console.WriteLine("");
 
-                        Console.WriteLine("Do you wish to Continue[1] or Exit[0]?"); //Ask if user wants to continue or leave the program;
+                        Console.WriteLine("Do you wish to Continue[1] or Exit[0] or Save[2]?"); //Ask if user wants to continue or leave the program;
                         choice = int.Parse(Console.ReadLine());
                         switch (choice) //Switch for direction of the program [0]Exit or [1]Continue;
                         {
@@ -183,6 +184,14 @@ namespace CSharp_BTC_Profit_Calculator
                                 break;
                             case 1: //CONTINUE;
                                 programContinue = true;
+                                break;
+                            case 2:
+                                using (StreamWriter writeText = new StreamWriter("value.btc", true))
+                                {
+                                    Double[] valueArray = { totalValue };
+
+                                    writeText.WriteLine(valueArray[0]);
+                                }
                                 break;
                             default:
                                 Console.WriteLine("Wrong Choice! Exitting Now");
@@ -260,6 +269,35 @@ namespace CSharp_BTC_Profit_Calculator
                                 break;
                         }
                         break; //Breaking Case 5;
+
+                    case 6:
+
+                        int n = 0;
+                        String[] input = File.ReadAllLines("value.btc");
+                        Double[] result = new double[99];
+                        bool dataExists = File.Exists("value.btc");
+                        Console.WriteLine("Looking for value.btc");
+                        if (dataExists == true)
+                        {
+                            
+                            Console.WriteLine("value.btc Found!");
+                            Console.WriteLine("Checking for saved Array");
+                            var okay = input;
+
+                            foreach (var value in okay)
+                            {
+                                result[n] = Double.Parse(value);
+                                Console.WriteLine(result[n]);
+                                n += 1;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("value.btc Not Found!");
+                            Console.WriteLine("Be sure to save some data from Option 3!");
+                            break;
+                        }
+                        break;
 
                     default: //DEFAULT INPUT FOR ANYTHING THAT IS NOT CHOICE VAR;
                         Console.WriteLine("");
