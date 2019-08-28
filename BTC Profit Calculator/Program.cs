@@ -13,6 +13,8 @@ namespace CSharp_BTC_Profit_Calculator
         {
 
             Console.ForegroundColor = ConsoleColor.Green;
+            Commands.Shit3 volod = new Commands.Shit3();
+            volod;
             //Define all possible variables we are going to use;
             int choice;
             Double version = 0.3;
